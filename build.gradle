@@ -55,9 +55,9 @@ dependencies {
     // compileOnly - 의존성을 컴파일시에만 포함
     // annotationProcessor - 컴파일러에게 어노테이션 확인할 때 lombok도 봐달라고 요청
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-stater-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     // h2 - 인메모리 관계형 데이터베이스로서 의존성만으로 관리 가능
-    implementation('org.h2database:h2')
+    implementation('com.h2database:h2')
     // gradle 5.x 이상 lombok 설정방법
     compileOnly('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
