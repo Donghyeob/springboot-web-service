@@ -16,7 +16,10 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto){
-        return postsRepository.save(requestDto.toEntity()).getId();
+        Long id = postsRepository.save(requestDto.toEntity()).getId();
+        System.out.println(requestDto.toEntity());
+        System.out.println(postsRepository.save(requestDto.toEntity()));
+        return id;
     }
 
     /*update 기능에서 쿼리를 보내는 부분이 없는데 이게 가능한 이유는
