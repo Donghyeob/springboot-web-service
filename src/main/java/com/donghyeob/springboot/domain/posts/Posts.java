@@ -1,5 +1,6 @@
 package com.donghyeob.springboot.domain.posts;
 
+import com.donghyeob.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity // Table과 링크될 클래스임을 나타내며 tblColunmName -> tbl_column_name으로 매칭함
-public class Posts {
+public class Posts extends BaseTimeEntity {
 // Posts class는 실제 DB의 테이블과 매칭될 클래스, Entity Class라고 함
 
     @Id // table pk key
