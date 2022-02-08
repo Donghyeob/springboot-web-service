@@ -16,7 +16,6 @@ public class PostApiController {
 
     @PostMapping("/")
     public Long save(@RequestBody PostsSaveRequestDto requestDto){
-        System.out.println("Post Api Controller Execution!");
         return postsService.save(requestDto);
     }
 

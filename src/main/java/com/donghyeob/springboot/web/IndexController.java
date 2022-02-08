@@ -11,4 +11,9 @@ public class IndexController {
         // src/main/resources/templates/index.mustache로 변환되어 View Resolver가 처리하게 됨
         return "index";
     }
+
+    @GetMapping("/posts/save")
+    public String postsSave() {
+        return "posts-save";
+    }
 }
