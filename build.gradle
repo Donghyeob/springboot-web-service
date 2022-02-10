@@ -57,6 +57,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-mustache')
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     // h2 - 인메모리 관계형 데이터베이스로서 의존성만으로 관리 가능
     implementation('com.h2database:h2')
     // gradle 5.x 이상 lombok 설정방법
