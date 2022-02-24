@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RequiredArgsConstructor
 @EnableWebSecurity // - Spring Security 설정들을 활성화
-public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -30,19 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                  anyRequest - 설정된 값들 이외 나머지 URL 들을 나타냄
                     여기서는 authenticated()를 추가하여 나머지 URL들은 모두 인증된 사용자들에게만 허용
                  */
-                .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**",
-                        "/h2-console/**", "/profile").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                .anyRequest().authenticated()
+                    .authorizeRequests()
+                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/profile").permitAll()
+//                    .antMatchers("/api/v1/**").permitAll()
+                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    .anyRequest().authenticated()
 
                 /*
                 * logout() - 로그아웃 기능 설정하는 옵션의 시작
                 * logoutSuccessUrl("/") - 로그아웃 성공 시 "/" 주소로 이동
                 * */
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
+                    .logout()
+                        .logoutSuccessUrl("/")
 
                 /*
                 * oauth2Login - OAuth 2 로그인 기능에 대한 여러 설정하는 옵션의 시작
@@ -53,15 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 *   진행하고자 하는 기능을 명시할 수 있음
                 * */
                 .and()
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // 모든 요청에 대해서
-                .allowedOrigins("http://localhost:8080")  // 해당 origin 허용하기
-        ;
+                    .oauth2Login()
+                        .userInfoEndpoint()
+                            .userService(customOAuth2UserService);
     }
 }
