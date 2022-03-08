@@ -14,15 +14,17 @@ public class OAuthAttributes {
     private String name;
     private String email;
     private String picture;
+    private String mobile;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey,
-                           String name, String email, String picture) {
+                           String name, String email, String picture, String mobile) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
         this.picture = picture;
+        this.mobile = mobile;
     }
 
     /*
@@ -30,6 +32,9 @@ public class OAuthAttributes {
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,
                                      Map<String, Object> attributes) {
+        if("naver".equals(registrationId)) {
+            return ofNaver("id", attributes);
+        }
         return ofGoogle(userNameAttributeName, attributes);
     }
 
@@ -44,15 +49,31 @@ public class OAuthAttributes {
                 .build();
     }
 
+    private static OAuthAttributes ofNaver(String userNameAttributeName,
+                                           Map<String, Object> attributes) {
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+        return OAuthAttributes.builder()
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("profile_image"))
+                .mobile((String) response.get("mobile"))
+                .attributes(response)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
     /*
     * User Entity 생성
     * OAuthAttributes에서 entity를 생성하는 시점은 처음 가입할 때
-    * 가입할 때의 기본 권한을 GUEST로 주기 위해서 role 빌더값에는 GUEST를 사용*/
+    * 가입할 때의 기본 권한을 GUEST로 주기 위해서 role 빌더값에는 GUEST를 사용
+    * */
     public User toEntity() {
         return User.builder()
                 .name(name)
                 .email(email)
                 .picture(picture)
+                .mobile(mobile)
                 .role(Role.USER)
                 .build();
     }
