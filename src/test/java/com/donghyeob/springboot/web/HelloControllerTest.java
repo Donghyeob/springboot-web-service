@@ -1,9 +1,13 @@
 package com.donghyeob.springboot.web;
 
+import com.donghyeob.springboot.config.auth.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,7 +22,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     @SpringBootTest를 사용하면 생략가능
  */
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(HelloController.class) // @Controller, @ControllerAdvice 등을 사용할 수 있음 HelloController에 대한 단위 테스트
+/*@WebMvcTest(HelloController.class) // @Controller, @ControllerAdvice 등을 사용할 수 있음 HelloController에 대한 단위 테스트*/
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+                classes = SecurityConfig.class)
+        })
 public class HelloControllerTest {
 
     /*스프링이 관리하는 Bean을 주입
@@ -28,6 +37,7 @@ public class HelloControllerTest {
     private MockMvc mvc;
 
     @Test
+    @WithMockUser(roles = "USER")
     public void hello_return() throws Exception {
         String hello = "hello";
 
@@ -37,6 +47,7 @@ public class HelloControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     public void helloDto_return() throws Exception {
         String name = "hello";
         int amount = 1000;
