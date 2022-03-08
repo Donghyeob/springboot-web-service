@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     /**
      * @LoginUser SessionUser user - 기본에 httpSession.getAttribute("user")로 가져오던 세션 정보 값을 개선.
