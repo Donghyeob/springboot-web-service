@@ -46,8 +46,8 @@ public class PostsService {
     }
     
     // readOnly = true - 조회 기능만 남겨 조회 속도가 개선됨
-    // postsRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto로 변환
-    //          -> List로 반환하는 메소드
+    // postsRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto로 변환(.map)
+    //          -> List로 반환하는 메소드(.collect)
     // 람다식 .map(PostsListResponseDto::new)
     //          == .map(posts -> new PostsListResponseDto(posts))
     @Transactional(readOnly = true)

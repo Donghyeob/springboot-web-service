@@ -24,6 +24,9 @@ public class User extends BaseTimeEntity {
     private String email;
 
     @Column
+    private String password;
+
+    @Column
     private String picture;
 
     @Column
@@ -38,9 +41,10 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, String mobile, Role role) {
+    public User(String name, String email, String password, String picture, String mobile, Role role) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.picture = picture;
         this.mobile = mobile;
         this.role = role;

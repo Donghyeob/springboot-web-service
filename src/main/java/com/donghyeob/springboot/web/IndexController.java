@@ -10,15 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
-
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
 
-    /**
+    /*
      * @LoginUser SessionUser user - 기본에 httpSession.getAttribute("user")로 가져오던 세션 정보 값을 개선.
      *      어느 컨트롤러든지 @LoginUser 어노테이션을 사용하면 세션 정보를 가져올 수 있음.
      */

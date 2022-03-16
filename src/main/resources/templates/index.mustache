@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary col-md-3 col-12">글 등록</a>
-<!--            "#userName" - mustache는 if문을 제공하지 않고 true/false 여부만 판단,
-                때문에 항상 최종 값을 넘겨야 한다.-->
+            <!--"#userName" - mustache는 if문을 제공하지 않고 true/false 여부만 판단,
+            때문에 항상 최종 값을 넘겨야 한다.-->
             {{#userName}}
                 Logged in as: <span id="user">{{userName}}</span>
                 <!--/logout - Spring Security에서 기본적으로 제공하는 로그아웃 URL
@@ -17,8 +17,9 @@
                 <!--/oauth2/authorization/google - spring security에서 별도로 제공하는 URL-->
                 <!--/oauth2/authorization/naver - naver login url은 application-oauth.properties에 등록한 redirect-uri값에
                 맞춰 자동으로 등록된다. /oauth2/authorization/까지는 고정이고 마지막 path만 각 소셜 로그인 코드를 사용하면 됨-->
-                <a href="/oauth2/authorization/google" class="btn btn-success active col-md-3 col-12" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active col-md-3 col-12" role="button">Naver Login</a>
+                <a href="/oauth2/authorization/google" class="btn btn-success active col-md-3 col-8" role="button">Google Login</a>
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active col-md-3 col-8" role="button">Naver Login</a>
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active col-md-3 col-8" role="button">Common Login</a>
             {{/userName}}
         </div>
     </div>
@@ -26,24 +27,24 @@
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">
         <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
+            <tr>
+                <th>게시글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
+            </tr>
         </thead>
         <tbody id="tbody">
-        <!-- posts라는 list를 순회 -->
-        {{#posts}}
-            <tr>
-<!--                list 내 객체의 필드를 사용-->
-                <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-        {{/posts}}
+            <!-- posts라는 list를 순회 -->
+            {{#posts}}
+                <tr>
+                    <!-- list 내 객체의 필드를 사용 -->
+                    <td>{{id}}</td>
+                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <td>{{author}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/posts}}
         </tbody>
     </table>
 </div>
