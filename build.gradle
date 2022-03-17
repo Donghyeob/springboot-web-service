@@ -61,6 +61,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.session:spring-session-jdbc')
+    implementation('io.springfox:springfox-boot-starter:3.0.0')
     runtimeOnly('org.mariadb.jdbc:mariadb-java-client')
     // h2 - 인메모리 관계형 데이터베이스로서 의존성만으로 관리 가능
 //    implementation('com.h2database:h2')
