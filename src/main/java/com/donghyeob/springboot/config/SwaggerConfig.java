@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+
     @Bean
     public OpenAPI springOpenApi() {
-        return new OpenAPI().info(new Info().title("API"));
+        return new OpenAPI().info(new Info().title("Springboot-Web-Service"));
     }
+
     @Bean
     public GroupedOpenApi springApiV1() {
         return GroupedOpenApi.builder()
