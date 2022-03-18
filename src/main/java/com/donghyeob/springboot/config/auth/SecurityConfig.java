@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     여기서는 authenticated()를 추가하여 나머지 URL들은 모두 인증된 사용자들에게만 허용
                  */
                     .authorizeRequests()
-                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/profile").permitAll()
+                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/profile", "/swagger-ui/**").permitAll()
                     .antMatchers("/api/v1/**").permitAll()
 //                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     .anyRequest().authenticated()

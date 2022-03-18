@@ -61,10 +61,10 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.session:spring-session-jdbc')
-    implementation('io.springfox:springfox-boot-starter:3.0.0')
+    implementation('org.springdoc:springdoc-openapi-ui:1.6.6')
     runtimeOnly('org.mariadb.jdbc:mariadb-java-client')
     // h2 - 인메모리 관계형 데이터베이스로서 의존성만으로 관리 가능
-//    implementation('com.h2database:h2')
+    // implementation('com.h2database:h2')
     // gradle 5.x 이상 lombok 설정방법
     compileOnly('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
